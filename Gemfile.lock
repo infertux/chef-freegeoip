@@ -1,0 +1,51 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.1.0)
+    astrolabe (1.3.1)
+      parser (~> 2.2)
+    erubis (2.7.0)
+    foodcritic (5.0.0)
+      erubis
+      gherkin (~> 2.11)
+      nokogiri (>= 1.5, < 2.0)
+      rake
+      rufus-lru (~> 1.0)
+      treetop (~> 1.4)
+      yajl-ruby (~> 1.1)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
+    mini_portile2 (2.0.0)
+    multi_json (1.11.2)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
+    parser (2.2.3.0)
+      ast (>= 1.1, < 3.0)
+    polyglot (0.3.5)
+    powerpack (0.1.1)
+    rainbow (2.0.0)
+    rake (10.4.2)
+    rubocop (0.35.1)
+      astrolabe (~> 1.3)
+      parser (>= 2.2.3.0, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      tins (<= 1.6.0)
+    ruby-progressbar (1.7.5)
+    rufus-lru (1.0.5)
+    tins (1.6.0)
+    treetop (1.6.3)
+      polyglot (~> 0.3)
+    yajl-ruby (1.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  foodcritic
+  rake
+  rubocop
+
+BUNDLED WITH
+   1.10.6

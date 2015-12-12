@@ -1,0 +1,42 @@
+#!/bin/bash
+# Created by Chef
+
+### BEGIN INIT INFO
+# Provides: Freegeoip
+# Required-Start: $networking
+# Required-Stop: $networking
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start at boot and stop at shutdown
+# Description: Starts Freegeoip service
+### END INIT INFO
+
+DAEMON="<%= @binary %>"
+ARGS="<%= @arguments %>"
+
+case "$1" in
+    start)
+        echo "Starting Freegeoip"
+        cd /tmp
+        /sbin/start-stop-daemon --start \
+            --user <%= node['freegeoip']['user'] %> \
+            --group <%= node['freegeoip']['user'] %> \
+            --chuid <%= node['freegeoip']['user'] %> \
+            -b --exec $DAEMON -- $ARGS
+    ;;
+    stop)
+        echo "Stopping Freegeoip"
+        /sbin/start-stop-daemon --stop --exec $DAEMON --verbose
+    ;;
+    restart)
+        $0 stop
+        sleep 1
+        $0 start
+    ;;
+    *)
+        echo "Usage: /etc/init.d/<%= File.basename(@binary) %> {start|stop|restart}"
+        exit 1
+    ;;
+esac
+
+exit 0
