@@ -1,6 +1,6 @@
 user node['freegeoip']['user'] do
   shell "/bin/false"
-  supports manage_home: false
+  manage_home false
 end
 
 archive_file = "#{Chef::Config['file_cache_path']}/#{node['freegeoip']['archive']}"
@@ -26,13 +26,13 @@ end
 bash "extract archive" do
   action :nothing
   cwd ::File.dirname(archive_file)
-  code <<-EOH
+  code <<-BASH
     rm -rf #{extract_path}
     tar xf #{archive_file}
     /etc/init.d/#{node['freegeoip']['service_wrapper']} stop
     sleep 1 # need to wait because file might still be in use
     cp #{extract_path}/freegeoip #{node['freegeoip']['binary']}
-  EOH
+  BASH
   notifies :restart, 'service[freegeoip]', :delayed
 end
 
@@ -55,6 +55,6 @@ end
 
 service node['freegeoip']['service_wrapper'] do
   supports   [start: true, stop: true, restart: true]
-  action     [:enable, :start]
+  action     %i[enable start]
   subscribes :restart, "template[/etc/init.d/#{node['freegeoip']['service_wrapper']}]", :delayed
 end
